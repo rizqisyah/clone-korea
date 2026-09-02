@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const wishesCount = document.getElementById('wishes-count');
     const btnSubmitRsvp = document.querySelector('.btn-submit-rsvp');
 
-    // Default fallback demo wishes
+    // Default fallback demo wishes (hanya dipakai jika belum ada URL GSheet)
     const defaultWishes = [
         {
             name: 'Keluarga Besar Kim (Seoul)',
@@ -294,28 +294,26 @@ document.addEventListener('DOMContentLoaded', () => {
             attendance: 'Hadir',
             message: 'Selamat menempuh hidup baru Riana & Seonghyeon! Semoga senantiasa sakinah, mawaddah, warahmah. Sangat bahagia mendengar kabar pernikahan kalian! ❤️',
             time: '1 jam yang lalu'
-        },
-        {
-            name: 'Min-ji Park',
-            attendance: 'Tidak Hadir',
-            message: '한국에서 진심 어린 축하의 마음을 보냅니다. 인도네시아에서 올리는 예식 멋지게 잘 치르시길 바랍니다! 축하해요 🎉',
-            time: '3 jam yang lalu'
-        },
-        {
-            name: 'Budi Santoso & Keluarga',
-            attendance: 'Hadir',
-            message: 'Selamat untuk kedua mempelai dan keluarga besar! Semoga pernikahannya diberkahi kebahagiaan hingga maut memisahkan.',
-            time: '5 jam yang lalu'
         }
     ];
 
-    let storedWishes = JSON.parse(localStorage.getItem('wedding_wishes_seonghyeon_riana')) || defaultWishes;
+    let storedWishes = JSON.parse(localStorage.getItem('wedding_wishes_seonghyeon_riana')) || (GOOGLE_SCRIPT_URL ? [] : defaultWishes);
 
     function renderWishes() {
         if (!wishesList) return;
         wishesList.innerHTML = '';
 
         if (wishesCount) wishesCount.textContent = storedWishes.length;
+
+        if (storedWishes.length === 0) {
+            wishesList.innerHTML = `
+                <div class="wish-empty" style="text-align: center; padding: 20px 10px; color: var(--text-muted); font-size: 0.8rem;">
+                    <i class="fa-regular fa-comment-dots" style="font-size: 1.6rem; margin-bottom: 6px; display: block; opacity: 0.5;"></i>
+                    Belum ada ucapan. Jadilah yang pertama memberikan doa restu! ✨
+                </div>
+            `;
+            return;
+        }
 
         storedWishes.forEach(wish => {
             const item = document.createElement('div');
@@ -343,15 +341,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return div.innerHTML;
     }
 
-    // Fetch live wishes from Google Sheets if URL is configured
+    // Fetch live wishes from Google Sheets (Realtime Sync)
     async function loadWishesFromGoogleSheet() {
         if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.trim() === '') return;
 
         try {
-            const response = await fetch(GOOGLE_SCRIPT_URL);
+            // Gunakan timestamp cache-buster agar selalu membaca data terbaru dari GSheet
+            const cacheBuster = `?t=${new Date().getTime()}`;
+            const response = await fetch(GOOGLE_SCRIPT_URL + cacheBuster);
             if (response.ok) {
                 const data = await response.json();
-                if (Array.isArray(data) && data.length > 0) {
+                if (Array.isArray(data)) {
+                    // Sinkronisasi penuh dengan GSheet (jika di GSheet dihapus, website ikut kosong/update)
                     storedWishes = data.map(item => ({
                         name: item.name || 'Tamu',
                         attendance: item.attendance || 'Hadir',
@@ -363,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } catch (err) {
-            console.log('Using local wishes cache (Google Sheet fetch skipped/offline):', err);
+            console.log('Using local cache:', err);
         }
     }
 
