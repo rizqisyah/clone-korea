@@ -274,8 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // 7. Interactive Guestbook & RSVP with Google Sheets Integration
     // -------------------------------------------------------------
-    // TEMPELKAN URL DEPLOYMENT WEB APP GOOGLE APPS SCRIPT ANDA DI SINI:
-    const GOOGLE_SCRIPT_URL = ""; 
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTb33xW6P97WiUIuX8X8Ctw-RMAUviFdqVvEXMI3OMhAUskfD3xr1gmdZiIRgTSADX/exec"; 
 
     const rsvpForm = document.getElementById('rsvp-form');
     const wishesList = document.getElementById('wishes-list');
