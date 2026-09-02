@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>The Wedding of Seonghyeon & Riana (김성현 ♥ RIANA)</title>
+    <meta name="description" content="Undangan Pernikahan Kim Seong-hyeon & Riana - Sabtu, 10 Oktober 2026 di Puri Cinere, Depok.">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Wedding of Seonghyeon & Riana">
+    <meta property="og:description" content="10 Oktober 2026 | Kim Seong-hyeon ♥ RIANA">
+    <meta property="og:image" content="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/JvTaCJAkWv.JPG?w=1280">
+    <meta property="og:url" content="https://undangan.theirmood.com/seonghyeon-riana">
+
+    <!-- Google Fonts: Korean & Editorial Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Gowun+Dodum&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Desktop Background Backdrop with Visual Elements -->
+    <div class="desktop-bg">
+        <div class="desktop-visual">
+            <div class="desktop-couple-title">Seonghyeon & Riana</div>
+            <p class="desktop-subtitle">The Wedding Invitation • 10.10.2026</p>
+            <div class="desktop-qr-card">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <p>Tampilan Dioptimalkan untuk Mobile Device</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Falling Flower Petals Canvas (Continuous Vertical Fall) -->
+    <canvas id="falling-petals-canvas" class="falling-petals-canvas"></canvas>
+
+    <!-- Envelope Opening Modal (Cover Splash) -->
+    <div id="cover-modal" class="cover-modal">
+        <div class="cover-content">
+            <div class="cover-badge">WEDDING INVITATION</div>
+            <h1 class="cover-names">Seonghyeon <span class="heart-accent">♥</span> Riana</h1>
+            <p class="cover-hangul">김성현 & RIANA</p>
+            
+            <div class="cover-photo-wrapper">
+                <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/JvTaCJAkWv.JPG?f=webp&w=800" alt="Seonghyeon & Riana" class="cover-photo">
+            </div>
+
+            <div class="cover-guest">
+                <span class="guest-label">Kepada Yth. Bapak/Ibu/Saudara/i:</span>
+                <h3 class="guest-name" id="guest-name-display">Tamu Undangan Terhormat</h3>
+                <p class="guest-note">Mohon maaf apabila ada kesalahan penulisan nama & gelar</p>
+            </div>
+
+            <button id="btn-open-invitation" class="btn-open">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Music Player Float -->
+    <div class="music-widget" id="music-widget">
+        <button class="music-btn" id="music-toggle" aria-label="Toggle Background Music">
+            <i class="fa-solid fa-compact-disc disk-icon"></i>
+        </button>
+        <audio id="bg-audio" loop preload="auto">
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-piano-112199.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Main Mobile Invitation Container -->
+    <main class="invitation-container" id="main-container">
+
+        <!-- 1. Hero / Main Section -->
+        <section class="section hero-section" id="hero">
+            <div class="hero-top-meta">
+                <span class="date-tag">OCTOBER 10, 2026</span>
+                <span class="hangul-sub">우리 결혼합니다</span>
+            </div>
+
+            <div class="hero-image-frame">
+                <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/JvTaCJAkWv.JPG?f=webp&w=1280" alt="Kim Seong-hyeon & Riana" class="hero-img">
+                <div class="hero-overlay"></div>
+            </div>
+
+            <div class="hero-body">
+                <p class="hero-greeting">THE WEDDING OF</p>
+                <h2 class="hero-couple-title">Seonghyeon & Riana</h2>
+                <div class="hero-date-box">
+                    <p class="date-text">Sabtu, 10 Oktober 2026</p>
+                    <p class="time-text">Pukul 07.00 WIB • Puri Cinere Mosque, Depok</p>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>SCROLL DOWN</span>
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+        </section>
+
+        <!-- 2. Intro Ment / Sambutan Pembuka -->
+        <section class="section intro-section reveal" id="intro">
+            <div class="section-badge">GREETING</div>
+            <h3 class="section-title">Salam & Doa Restu</h3>
+            <div class="ornament-divider"><span>❀</span></div>
+
+            <div class="intro-letter">
+                <p class="letter-korean">
+                    저희 두 사람이 서로의 삶을 함께하기로 약속했습니다.<br>
+                    소중한 분들께 결혼 소식을 전하며 따뜻한 마음을 담아 전해드립니다.
+                </p>
+                
+                <div class="letter-separator"></div>
+
+                <p class="letter-indonesia">
+                    "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                </p>
+                <p class="letter-verse">— (QS. Ar-Rum: 21)</p>
+                
+                <div class="letter-message">
+                    <p>Atas Rahmat Tuhan Yang Maha Esa, kami bermaksud mengikat janji suci dan menyatukan dua hati dalam ikatan pernikahan yang kudus.</p>
+                    <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu bagi langkah baru perjalanan hidup kami.</p>
+                </div>
+            </div>
+
+            <!-- Couple Profiles -->
+            <div class="couple-profiles">
+                <!-- Groom -->
+                <div class="profile-card">
+                    <div class="profile-role">MEMPELAI PRIA / 신랑</div>
+                    <h4 class="profile-name">Kim Seong-hyeon</h4>
+                    <p class="profile-hangul">김성현</p>
+                    <p class="profile-parents">
+                        Putra tercinta dari:<br>
+                        <strong>Bpk. Kim Sam-deuk</strong> (김삼득)<br>& <strong>Ibu Won Mi-ja</strong> (원미자)
+                    </p>
+                </div>
+
+                <div class="profile-connector">&</div>
+
+                <!-- Bride -->
+                <div class="profile-card">
+                    <div class="profile-role">MEMPELAI WANITA / 신부</div>
+                    <h4 class="profile-name">Riana</h4>
+                    <p class="profile-hangul">RIANA</p>
+                    <p class="profile-parents">
+                        Putri tercinta dari:<br>
+                        <strong>Bpk. Sugiyanto</strong><br>& <strong>Ibu Puji Lestari</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Love Story / Timeline -->
+        <section class="section timeline-section reveal" id="timeline">
+            <div class="section-badge">OUR STORY</div>
+            <h3 class="section-title">만남에서 사랑으로</h3>
+            <p class="section-subtitle">Momen-momen Indah Perjalanan Cinta Kami</p>
+            <div class="ornament-divider"><span>❀</span></div>
+
+            <div class="timeline-cover-card">
+                <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/SNOrFW8PTA.jpg?f=webp&w=1280" alt="Our Journey" class="timeline-cover-img">
+                <div class="timeline-cover-caption">
+                    <p class="quote-hangul">"우리를 만든 순간들"</p>
+                    <p class="quote-id">Setiap detik berharga yang menuntun kami menuju satu tujuan abadi.</p>
+                </div>
+            </div>
+
+            <div class="story-timeline">
+                <div class="story-item">
+                    <div class="story-img-box">
+                        <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/N9qkQfnThj.jpg?f=webp&w=800" alt="Awal Pertemuan">
+                    </div>
+                    <div class="story-content">
+                        <span class="story-tag">Chapter 01</span>
+                        <h4 class="story-title">Awal Pertemuan</h4>
+                        <p class="story-desc">Pertemuan tak terduga yang menjadi awal dari kisah manis dua insan dari latar belakang berbeda namun satu frekuensi.</p>
+                    </div>
+                </div>
+
+                <div class="story-item reverse">
+                    <div class="story-img-box">
+                        <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/617ji04REs.jpg?f=webp&w=800" alt="Merajut Kasih">
+                    </div>
+                    <div class="story-content">
+                        <span class="story-tag">Chapter 02</span>
+                        <h4 class="story-title">Merajut Kasih</h4>
+                        <p class="story-desc">Belajar saling memahami, menghormati budaya masing-masing, dan menumbuhkan rasa cinta yang kian mendalam setiap harinya.</p>
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-img-box">
+                        <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/7AM1lj3jQD.jpg?f=webp&w=800" alt="Janji & Komitmen">
+                    </div>
+                    <div class="story-content">
+                        <span class="story-tag">Chapter 03</span>
+                        <h4 class="story-title">Komitmen & Restu</h4>
+                        <p class="story-desc">Dengan restu hangat dari kedua keluarga besar di Korea dan Indonesia, kami memantapkan langkah menuju pelaminan.</p>
+                    </div>
+                </div>
+
+                <div class="story-item reverse">
+                    <div class="story-img-box">
+                        <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/niQXx0lUgm.jpg?f=webp&w=800" alt="Menuju Hari Bahagia">
+                    </div>
+                    <div class="story-content">
+                        <span class="story-tag">Chapter 04</span>
+                        <h4 class="story-title">Menuju Hari Bahagia</h4>
+                        <p class="story-desc">Kini kami siap menyatukan janji suci seumur hidup, membangun keluarga kecil yang dipenuhi cinta dan keberkahan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Save The Date & Calendar / Countdown -->
+        <section class="section date-section reveal" id="calendar">
+            <div class="section-badge">SAVE THE DATE</div>
+            <h3 class="section-title">Sabtu, 10 Oktober 2026</h3>
+            <p class="section-subtitle">2026. 10. 10 (토요일) 오전 07:00</p>
+            <div class="ornament-divider"><span>❀</span></div>
+
+            <!-- Korean Aesthetic Calendar -->
+            <div class="calendar-card">
+                <div class="calendar-header">
+                    <h4>OCTOBER 2026</h4>
+                    <span>10월</span>
+                </div>
+                <div class="calendar-grid">
+                    <div class="day-label sun">MIN</div>
+                    <div class="day-label">SEN</div>
+                    <div class="day-label">SEL</div>
+                    <div class="day-label">RAB</div>
+                    <div class="day-label">KAM</div>
+                    <div class="day-label">JUM</div>
+                    <div class="day-label sat">SAB</div>
+
+                    <!-- Week 1 -->
+                    <div class="date-cell empty"></div>
+                    <div class="date-cell empty"></div>
+                    <div class="date-cell empty"></div>
+                    <div class="date-cell empty"></div>
+                    <div class="date-cell">1</div>
+                    <div class="date-cell">2</div>
+                    <div class="date-cell sat">3</div>
+
+                    <!-- Week 2 -->
+                    <div class="date-cell sun">4</div>
+                    <div class="date-cell">5</div>
+                    <div class="date-cell">6</div>
+                    <div class="date-cell">7</div>
+                    <div class="date-cell">8</div>
+                    <div class="date-cell">9</div>
+                    <div class="date-cell sat wedding-highlight">
+                        <span>10</span>
+                        <i class="fa-solid fa-heart mark-heart"></i>
+                    </div>
+
+                    <!-- Week 3 -->
+                    <div class="date-cell sun">11</div>
+                    <div class="date-cell">12</div>
+                    <div class="date-cell">13</div>
+                    <div class="date-cell">14</div>
+                    <div class="date-cell">15</div>
+                    <div class="date-cell">16</div>
+                    <div class="date-cell sat">17</div>
+
+                    <!-- Week 4 -->
+                    <div class="date-cell sun">18</div>
+                    <div class="date-cell">19</div>
+                    <div class="date-cell">20</div>
+                    <div class="date-cell">21</div>
+                    <div class="date-cell">22</div>
+                    <div class="date-cell">23</div>
+                    <div class="date-cell sat">24</div>
+
+                    <!-- Week 5 -->
+                    <div class="date-cell sun">25</div>
+                    <div class="date-cell">26</div>
+                    <div class="date-cell">27</div>
+                    <div class="date-cell">28</div>
+                    <div class="date-cell">29</div>
+                    <div class="date-cell">30</div>
+                    <div class="date-cell sat">31</div>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="countdown-card">
+                <p class="countdown-label">Menghitung Hari Menuju Hari Bahagia:</p>
+                <div class="timer-grid" id="timer-grid">
+                    <div class="timer-item">
+                        <span class="timer-num" id="days">00</span>
+                        <span class="timer-txt">HARI</span>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-item">
+                        <span class="timer-num" id="hours">00</span>
+                        <span class="timer-txt">JAM</span>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-item">
+                        <span class="timer-num" id="minutes">00</span>
+                        <span class="timer-txt">MENIT</span>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-item">
+                        <span class="timer-num" id="seconds">00</span>
+                        <span class="timer-txt">DETIK</span>
+                    </div>
+                </div>
+                <div class="dday-quote">
+                    <p>김성현 ♥ RIANA의 결혼식이 <span id="dday-counter-text" class="dday-badge">D-Day</span> 남았습니다.</p>
+                </div>
+                <button class="btn-cal-action" id="btn-add-calendar">
+                    <i class="fa-regular fa-calendar-plus"></i>
+                    <span>Simpan ke Google Calendar</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 5. Event Details & Location -->
+        <section class="section event-section reveal" id="location">
+            <div class="section-badge">EVENT & LOCATION</div>
+            <h3 class="section-title">Waktu & Tempat Acara</h3>
+            <p class="section-subtitle">오시는 길 & 예식 안내</p>
+            <div class="ornament-divider"><span>❀</span></div>
+
+            <div class="event-cards">
+                <!-- Akad / Pemberkatan -->
+                <div class="event-card">
+                    <div class="event-icon"><i class="fa-solid fa-ring"></i></div>
+                    <h4 class="event-type">Akad Nikah / Pemberkatan</h4>
+                    <p class="event-hangul">예식</p>
+                    <div class="event-details">
+                        <p><i class="fa-regular fa-clock"></i> 07.00 - 09.00 WIB</p>
+                        <p><i class="fa-regular fa-calendar-check"></i> Sabtu, 10 Oktober 2026</p>
+                        <p><i class="fa-solid fa-location-dot"></i> Puri Cinere Mosque</p>
+                    </div>
+                </div>
+
+                <!-- Resepsi -->
+                <div class="event-card">
+                    <div class="event-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+                    <h4 class="event-type">Resepsi Pernikahan</h4>
+                    <p class="event-hangul">피로연</p>
+                    <div class="event-details">
+                        <p><i class="fa-regular fa-clock"></i> 11.00 - 14.00 WIB</p>
+                        <p><i class="fa-regular fa-calendar-check"></i> Sabtu, 10 Oktober 2026</p>
+                        <p><i class="fa-solid fa-location-dot"></i> Puri Cinere Grand Hall</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map & Venue Info -->
+            <div class="venue-card">
+                <h4 class="venue-title">Puri Cinere Mosque</h4>
+                <p class="venue-address" id="venue-address-text">
+                    Jl. Lembah Pinus, Pangkalan Jati, Kec. Cinere, Kota Depok, Jawa Barat 16514
+                </p>
+
+                <!-- Map Frame Embed -->
+                <div class="map-wrapper">
+                    <iframe 
+                        title="Lokasi Pernikahan"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.748057530495!2d106.77686987586948!3d-6.32465829366479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69efc5bc4a0e9d%3A0x6b4f7706ff77db63!2sMasjid%20Puri%20Cinere!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="240" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <div class="venue-actions">
+                    <button class="btn-venue-action" id="btn-copy-address">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Salin Alamat</span>
+                    </button>
+                    <a href="https://maps.google.com/?q=-6.3246583,106.7794448" target="_blank" rel="noopener noreferrer" class="btn-venue-action btn-primary-action">
+                        <i class="fa-solid fa-diamond-turn-right"></i>
+                        <span>Buka Google Maps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Photo Gallery (웨딩 갤러리) -->
+        <section class="section gallery-section reveal" id="gallery">
+            <div class="section-badge">GALLERY</div>
+            <h3 class="section-title">웨딩 갤러리</h3>
+            <p class="section-subtitle">Galeri Momen Bahagia Kami</p>
+            <div class="ornament-divider"><span>❀</span></div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-index="0">
+                    <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/GZV9WA5pjL.JPG?f=webp&w=800" alt="Gallery Photo 1" loading="lazy">
+                    <div class="gallery-hover-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-index="1">
+                    <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/KSpGhIaC4s.JPG?f=webp&w=800" alt="Gallery Photo 2" loading="lazy">
+                    <div class="gallery-hover-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/jZGjtHF8DM.JPG?f=webp&w=800" alt="Gallery Photo 3" loading="lazy">
+                    <div class="gallery-hover-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/bUIhkQIrtP.JPG?f=webp&w=800" alt="Gallery Photo 4" loading="lazy">
+                    <div class="gallery-hover-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+            </div>
+            <p class="gallery-tip"><i class="fa-regular fa-hand-pointer"></i> Klik foto untuk melihat ukuran penuh</p>
+        </section>
+
+        <!-- 7. Wedding Gift / Amplop Digital (마음 전하실 곳) -->
+        <section class="section gift-section reveal" id="gift">
+            <div class="section-badge">WEDDING GIFT</div>
+            <h3 class="section-title">Tanda Kasih</h3>
+            <p class="section-subtitle">마음 전하실 곳</p>
+            <div class="ornament-divider"><span>❀</span></div>
+
+            <p class="gift-intro">
+                Doa restu Anda merupakan karunia terindah bagi kami. Namun apabila Anda ingin memberikan tanda kasih dan hadiah pernikahan, Anda dapat mengirimkannya melalui:
+            </p>
+
+            <div class="gift-accordion">
+                <!-- Groom Bank (KB Kookmin Bank / BCA) -->
+                <div class="gift-card">
+                    <div class="gift-card-header">
+                        <div class="bank-logo-text">
+                            <span class="bank-name">KB Kookmin Bank (국민은행)</span>
+                            <span class="account-holder">a.n. Kim Sam-deuk (김삼득)</span>
+                        </div>
+                        <i class="fa-solid fa-wallet card-icon"></i>
+                    </div>
+                    <div class="account-number-box">
+                        <span class="acc-num" id="acc-kb">604-01-0225295</span>
+                        <button class="btn-copy-acc" data-target="acc-kb" data-label="No. Rekening KB Kookmin">
+                            <i class="fa-regular fa-copy"></i> Salin No. Rekening
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bride Bank (BCA Indonesia) -->
+                <div class="gift-card">
+                    <div class="gift-card-header">
+                        <div class="bank-logo-text">
+                            <span class="bank-name">Bank Central Asia (BCA)</span>
+                            <span class="account-holder">a.n. Riana</span>
+                        </div>
+                        <i class="fa-solid fa-credit-card card-icon"></i>
+                    </div>
+                    <div class="account-number-box">
+                        <span class="acc-num" id="acc-bca">7310-8899-21</span>
+                        <button class="btn-copy-acc" data-target="acc-bca" data-label="No. Rekening BCA">
+                            <i class="fa-regular fa-copy"></i> Salin No. Rekening
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Physical Gift Address -->
+                <div class="gift-card address-gift-card">
+                    <div class="gift-card-header">
+                        <div class="bank-logo-text">
+                            <span class="bank-name">Kirim Kado Fisik</span>
+                            <span class="account-holder">Penerima: Seonghyeon & Riana</span>
+                        </div>
+                        <i class="fa-solid fa-box-open card-icon"></i>
+                    </div>
+                    <div class="account-number-box">
+                        <p class="physical-address" id="gift-address">
+                            Jl. Lembah Pinus No. 18, Pangkalan Jati, Kec. Cinere, Kota Depok, Jawa Barat 16514 (Telp: 0812-3456-7890)
+                        </p>
+                        <button class="btn-copy-acc" data-target="gift-address" data-label="Alamat Pengiriman">
+                            <i class="fa-regular fa-copy"></i> Salin Alamat Kado
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Guestbook & RSVP (방명록 & Ucapan Doa) -->
+        <section class="section rsvp-section reveal" id="guestbook">
+            <div class="section-badge">RSVP & WISHES</div>
+            <h3 class="section-title">Buku Tamu & Ucapan</h3>
+            <p class="section-subtitle">방명록</p>
+            <div class="ornament-divider"><span>❀</span></div>
+
+            <!-- RSVP Form -->
+            <form id="rsvp-form" class="rsvp-form">
+                <div class="form-group">
+                    <label for="guest-name"><i class="fa-regular fa-user"></i> Nama Lengkap</label>
+                    <input type="text" id="guest-name" placeholder="Tuliskan nama Anda..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-attendance"><i class="fa-regular fa-calendar-check"></i> Konfirmasi Kehadiran</label>
+                    <select id="guest-attendance" required>
+                        <option value="Hadir">✨ Hadir (참석)</option>
+                        <option value="Tidak Hadir">🌸 Berhalangan Hadir (불참)</option>
+                        <option value="Masih Ragu">🕊️ Masih Ragu</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-pax"><i class="fa-solid fa-users"></i> Jumlah Tamu</label>
+                    <select id="guest-pax">
+                        <option value="1">1 Orang</option>
+                        <option value="2">2 Orang</option>
+                        <option value="3">3 Orang</option>
+                        <option value="4">4 Orang</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-message"><i class="fa-regular fa-comment-dots"></i> Doa & Ucapan Restu</label>
+                    <textarea id="guest-message" rows="3" placeholder="Tuliskan doa dan ucapan hangat Anda untuk kedua mempelai..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-rsvp">
+                    <i class="fa-regular fa-paper-plane"></i>
+                    <span>Kirim Ucapan & Konfirmasi</span>
+                </button>
+            </form>
+
+            <!-- Wishes List Display -->
+            <div class="wishes-wrapper">
+                <div class="wishes-header">
+                    <h4>Doa & Ucapan (<span id="wishes-count">0</span>)</h4>
+                </div>
+                <div class="wishes-list" id="wishes-list">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Ending Photo & Poem (사랑가) -->
+        <section class="section ending-section reveal" id="ending">
+            <div class="ending-photo-frame">
+                <img src="https://images.theirmood.com/resources/129210/card/aTVCJKyACd/C4M5AT16PK.jpg?f=webp&w=1280" alt="Ending Photo" class="ending-img" loading="lazy">
+                <div class="ending-overlay"></div>
+            </div>
+
+            <div class="ending-quote-card">
+                <div class="quote-korean">
+                    <p>장담하건대, 세상이 다 겨울이어도</p>
+                    <p>우리 사랑은 늘 봄처럼 따뜻하고</p>
+                    <p>간혹, 여름처럼 뜨거울 겁니다.</p>
+                    <span class="quote-author">이수동, 『사랑가』</span>
+                </div>
+
+                <div class="quote-divider"></div>
+
+                <div class="quote-indonesia">
+                    <p>"Kupastikan, sekalipun seisi dunia diliputi musim dingin,</p>
+                    <p>cinta kita akan selalu sehangat musim semi,</p>
+                    <p>dan terkadang membara hangat bagaikan musim panas."</p>
+                    <span class="quote-author-id">— Lee Soo-dong, "Lagu Cinta"</span>
+                </div>
+            </div>
+
+            <div class="thank-you-box">
+                <p class="thank-title">Terima Kasih</p>
+                <p class="thank-desc">Atas doa restu dan kehangatan yang Anda berikan kepada kami.</p>
+                <h4 class="thank-couple">Seonghyeon & Riana</h4>
+                <p class="thank-hangul">김성현 ♥ RIANA</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 The Wedding of Seonghyeon & Riana</p>
+            <p class="footer-credit">Korean Aesthetic Digital Invitation</p>
+        </footer>
+
+    </main>
+
+    <!-- Lightbox Modal for Gallery Zoom -->
+    <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+        <button class="lightbox-prev" id="lightbox-prev" aria-label="Foto Sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Fullscreen Gallery">
+        </div>
+        <button class="lightbox-next" id="lightbox-next" aria-label="Foto Selanjutnya"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="alert">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">Teks berhasil disalin!</span>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
