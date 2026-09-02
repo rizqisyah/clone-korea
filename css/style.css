@@ -319,11 +319,58 @@ body {
 }
 
 /* ==========================================================================
-   SECTIONS COMMON STYLING
+   LUXURY TYPOGRAPHY ANIMATIONS & SHIMMER
+   ========================================================================== */
+
+@keyframes luxuryShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes softGlow {
+    0%, 100% { opacity: 0.85; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+}
+
+@keyframes letterExpand {
+    0% { letter-spacing: 2px; opacity: 0; filter: blur(4px); }
+    100% { letter-spacing: 4px; opacity: 1; filter: blur(0); }
+}
+
+/* Shimmer on luxury titles */
+.cover-names,
+.hero-couple-title,
+.thank-couple {
+    background: linear-gradient(135deg, #2d2a29 0%, #3e3835 30%, #c5a880 50%, #3e3835 70%, #2d2a29 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: luxuryShimmer 8s ease-in-out infinite;
+    letter-spacing: 1px;
+}
+
+.heart-accent {
+    -webkit-text-fill-color: var(--accent-pink);
+    display: inline-block;
+    animation: softGlow 2.5s ease-in-out infinite;
+    margin: 0 4px;
+}
+
+.cover-hangul,
+.hangul-sub,
+.profile-hangul,
+.quote-hangul,
+.thank-hangul {
+    letter-spacing: 2.5px;
+    transition: var(--transition-smooth);
+}
+
+/* ==========================================================================
+   SECTIONS COMMON STYLING & LUXURY SCROLL REVEAL
    ========================================================================== */
 
 .section {
-    padding: 56px 24px;
+    padding: 60px 24px;
     position: relative;
 }
 
@@ -333,63 +380,110 @@ body {
     font-weight: 600;
     letter-spacing: 4px;
     color: var(--accent-rose);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     text-transform: uppercase;
 }
 
 .section-title {
     text-align: center;
     font-family: var(--font-serif);
-    font-size: 1.95rem;
+    font-size: 2.05rem;
     font-weight: 500;
     color: var(--text-primary);
     line-height: 1.25;
+    letter-spacing: 0.5px;
 }
 
 .section-subtitle {
     text-align: center;
     font-family: var(--font-hangul);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
-    margin-top: 4px;
+    margin-top: 6px;
+    letter-spacing: 1.5px;
 }
 
 .ornament-divider {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 18px 0 32px;
+    margin: 20px 0 34px;
     color: var(--accent-pink);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .ornament-divider::before,
 .ornament-divider::after {
     content: '';
-    width: 40px;
+    width: 44px;
     height: 1px;
-    background: var(--border-color);
-    margin: 0 10px;
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+    margin: 0 12px;
 }
 
-/* Scroll Reveal Base */
+.ornament-divider span {
+    display: inline-block;
+    animation: softGlow 3s ease-in-out infinite;
+}
+
+/* Kinetic Scroll Reveal with Blur-to-Clear */
 .reveal {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(34px);
+    filter: blur(5px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
 }
 
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Cascade Animation for Internal Section Children */
+.reveal .section-badge,
+.reveal .section-title,
+.reveal .section-subtitle,
+.reveal .ornament-divider {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active .section-badge {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+}
+
+.reveal.active .section-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.22s;
+}
+
+.reveal.active .section-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.34s;
+}
+
+.reveal.active .ornament-divider {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.44s;
 }
 
 /* ==========================================================================
-   1. HERO SECTION
+   1. HERO SECTION (CINEMATIC ENTRY SEQUENCE)
    ========================================================================== */
 
 .hero-section {
-    padding: 30px 20px 40px;
+    padding: 34px 20px 40px;
     text-align: center;
     background: var(--bg-card);
     min-height: 100vh;
@@ -397,27 +491,28 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .hero-top-meta {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: 5px;
+    margin-bottom: 18px;
 }
 
 .date-tag {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
     color: var(--text-secondary);
 }
 
 .hangul-sub {
     font-family: var(--font-hangul);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: var(--accent-rose);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .hero-image-frame {
@@ -427,7 +522,7 @@ body {
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 16px 40px rgba(180, 140, 130, 0.12), 0 4px 12px rgba(0,0,0,0.04);
 }
 
 .hero-img {
@@ -436,7 +531,11 @@ body {
     object-fit: cover;
     object-position: center 25%;
     display: block;
-    transition: transform 1.2s ease;
+    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-section.active .hero-img {
+    transform: scale(1.03);
 }
 
 .hero-overlay {
@@ -444,8 +543,8 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 35%;
-    background: linear-gradient(to top, rgba(0,0,0,0.35), transparent);
+    height: 38%;
+    background: linear-gradient(to top, rgba(0,0,0,0.38), transparent);
 }
 
 .hero-body {
@@ -455,30 +554,31 @@ body {
 
 .hero-greeting {
     font-size: 0.75rem;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     color: var(--text-muted);
     margin-bottom: 6px;
+    text-transform: uppercase;
 }
 
 .hero-couple-title {
     font-family: var(--font-serif);
-    font-size: 2.3rem;
+    font-size: 2.4rem;
     font-weight: 500;
-    color: var(--text-primary);
-    line-height: 1.15;
+    line-height: 1.18;
     margin-bottom: 12px;
 }
 
 .hero-date-box .date-text {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     font-weight: 600;
     color: var(--text-primary);
+    letter-spacing: 0.5px;
 }
 
 .hero-date-box .time-text {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--text-secondary);
-    margin-top: 2px;
+    margin-top: 3px;
 }
 
 .scroll-indicator {
