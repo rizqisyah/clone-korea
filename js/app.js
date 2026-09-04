@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 3. Countdown Timer (Target: 10 Oktober 2026 07:00 WIB)
+    // 3. Countdown Timer (Target: 12 Desember 2026 07:00 WIB)
     // -------------------------------------------------------------
-    const targetDate = new Date('2026-10-10T07:00:00+07:00').getTime();
+    const targetDate = new Date('2026-12-12T07:00:00+07:00').getTime();
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
@@ -145,9 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnAddCalendar) {
         btnAddCalendar.addEventListener('click', () => {
             const title = encodeURIComponent('The Wedding of Seonghyeon & Riana (김성현 ♥ RIANA)');
-            const details = encodeURIComponent('Pernikahan Kim Seong-hyeon & Riana\nLokasi: Puri Cinere Mosque / Grand Hall\nWaktu: 07:00 - 14:00 WIB');
-            const location = encodeURIComponent('Puri Cinere Mosque, Jl. Lembah Pinus, Pangkalan Jati, Kec. Cinere, Kota Depok, Jawa Barat 16514');
-            const dates = '20261010T000000Z/20261010T070000Z'; // UTC equivalent
+            const details = encodeURIComponent('Pernikahan Kim Seong-hyeon & Riana\nLokasi: Plataran Dharmawangsa, Jakarta Selatan\nWaktu: 07:00 - 14:00 WIB');
+            const location = encodeURIComponent('Plataran Dharmawangsa, Jl. Dharmawangsa Raya No. 6, Pulo, Kec. Kebayoran Baru, Kota Jakarta Selatan, DKI Jakarta 12160');
+            const dates = '20261212T000000Z/20261212T070000Z'; // UTC equivalent
             const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
             window.open(gCalUrl, '_blank');
         });
